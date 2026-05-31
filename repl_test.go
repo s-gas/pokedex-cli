@@ -32,6 +32,16 @@ var tests = []Test{
 		input:	"PIKACHU",
 		want:		[]string{"Pikachu"},
 	},
+	{	
+		info:		"Not capitalized",
+		input:	"piKacHu dIttO",
+		want:		[]string{"Pikachu", "Ditto"},
+	},
+	{	
+		info:		"Digits",
+		input:	"piKacHu d1tt0",
+		want:		[]string{"Pikachu", "D1tt0"},
+	},
 }
 
 func TestCleanInput(t *testing.T) {
