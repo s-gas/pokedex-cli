@@ -15,12 +15,12 @@ var tests = []Test{
 	{
 		info:		"One word",
 		input: 	"Pikachu",
-		want:		[]string{"Pikachu"},
+		want:		[]string{"pikachu"},
 	},
 	{
 		info:		"Two words",
 		input:	"Pikachu Ditto",
-		want:		[]string{"Pikachu", "Ditto"},
+		want:		[]string{"pikachu", "ditto"},
 	},
 	{
 		info:		"Empty string",
@@ -30,17 +30,17 @@ var tests = []Test{
 	{	
 		info:		"All uppercase",
 		input:	"PIKACHU",
-		want:		[]string{"Pikachu"},
+		want:		[]string{"pikachu"},
 	},
 	{	
-		info:		"Not capitalized",
+		info:		"Mixed lower and upper case",
 		input:	"piKacHu dIttO",
-		want:		[]string{"Pikachu", "Ditto"},
+		want:		[]string{"pikachu", "ditto"},
 	},
 	{	
 		info:		"Digits",
 		input:	"piKacHu d1tt0",
-		want:		[]string{"Pikachu", "D1tt0"},
+		want:		[]string{"pikachu", "d1tt0"},
 	},
 }
 
