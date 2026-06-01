@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
@@ -46,14 +45,4 @@ func Exec(words []string, config *config.Config) {
 	} else {
 		fmt.Println("Unknown command")
 	}
-}
-
-func commandMap(config *config.Config) error {
-	res, err := http.Get(config.Url)
-	if err != nil {
-		return fmt.Errorf("commandMap: %w", err)
-	}
-	defer res.Body.Close()
-
-	return nil
 }
