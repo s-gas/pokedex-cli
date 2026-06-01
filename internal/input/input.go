@@ -1,12 +1,12 @@
-package main
+package input
 
 import (
-	"strings"
 	"bufio"
 	"fmt"
+	"strings"
 )
 
-func parseInput(scanner *bufio.Scanner) []string {
+func Parse(scanner *bufio.Scanner) []string {
 	printPrompt()
 	if scanner.Scan() {
 		input := scanner.Text()
