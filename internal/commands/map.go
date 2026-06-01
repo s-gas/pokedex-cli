@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	"encoding/json"
+	"io"
 
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
@@ -29,8 +30,12 @@ func commandMap(config *config.Config) error {
 		return fmt.Errorf("commandMap: %w", err)
 	}
 	defer res.Body.Close()
+	rawData, err := io.ReadAll(res.Body)
+	if err != nil {
+		return fmt.Errorf("commandMap: %w", err)
+	}
 	var locations Locations
-	if err = json.NewDecoder(res.Body).Decode(&locations); err != nil {
+	if err = json.Unmarshal(rawData, &locations); err != nil {
 		return fmt.Errorf("commandMap: %w", err)
 	}
 	printResults(locations.Results)	
@@ -49,8 +54,12 @@ func commandMapB(config *config.Config) error {
 		return fmt.Errorf("commandMap: %w", err)
 	}
 	defer res.Body.Close()
+	rawData, err := io.ReadAll(res.Body)
+	if err != nil {
+		return fmt.Errorf("commandMap: %w", err)
+	}
 	var locations Locations
-	if err = json.NewDecoder(res.Body).Decode(&locations); err != nil {
+	if err = json.Unmarshal(rawData, &locations); err != nil {
 		return fmt.Errorf("commandMap: %w", err)
 	}
 	printResults(locations.Results)
