@@ -3,13 +3,14 @@ package commands
 import (
 	"fmt"
 
+	"github.com/s-gas/pokedex-cli/internal/cache"
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
 type CliCommand struct {
 	name     string
 	info     string
-	callback func(config *config.Config) error
+	callback func(config *config.Config, cache *cache.Cache) error
 }
 
 var commands map[string]CliCommand
@@ -32,21 +33,21 @@ func init() {
 			callback: commandMap,
 		},
 		"mapb": {
-			name:			"mapb",
-			info:			"Displays the previous 20 locations",
-			callback:	commandMapB,
+			name:     "mapb",
+			info:     "Displays the previous 20 locations",
+			callback: commandMapB,
 		},
 	}
 }
 
-func Exec(words []string, config *config.Config) error {
+func Exec(words []string, config *config.Config, cache *cache.Cache) error {
 	if len(words) == 0 {
-		commandHelp(config)
+		commandHelp(config, cache)
 		return nil
 	}
 	word := words[0]
 	if cmd, ok := commands[word]; ok {
-		if err := cmd.callback(config); err != nil {
+		if err := cmd.callback(config, cache); err != nil {
 			return fmt.Errorf("Exec: %w", err)
 		}
 	} else {

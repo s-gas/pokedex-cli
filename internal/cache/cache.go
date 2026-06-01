@@ -6,13 +6,13 @@ import (
 )
 
 type CacheEntry struct {
-	createdAt	time.Time
-	val				[]byte
+	createdAt time.Time
+	val       []byte
 }
 
 type Cache struct {
-	data	map[string]CacheEntry
-	mu		sync.Mutex
+	data map[string]CacheEntry
+	mu   sync.Mutex
 }
 
 func New(interval time.Duration) *Cache {
@@ -27,8 +27,8 @@ func (cache *Cache) Add(key string, val []byte) {
 	cache.mu.Lock()
 	defer cache.mu.Unlock()
 	cache.data[key] = CacheEntry{
-		createdAt:	time.Now(),
-		val:				val,
+		createdAt: time.Now(),
+		val:       val,
 	}
 }
 

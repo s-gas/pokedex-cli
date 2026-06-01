@@ -6,29 +6,29 @@ import (
 )
 
 type Test struct {
-	info 		string
-	inputA	string
-	inputB	[]byte
+	info   string
+	inputA string
+	inputB []byte
 }
 
 var tests = []Test{
 	{
-		info: 	"example.com",
-		inputA:	"http://example.com",
-		inputB:	[]byte("data"),
+		info:   "example.com",
+		inputA: "http://example.com",
+		inputB: []byte("data"),
 	},
 	{
-		info:		"pokeapi",
-		inputA:	"https://pokeapi.co/api/v2/location-area",
-		inputB:	[]byte("data"),
+		info:   "pokeapi",
+		inputA: "https://pokeapi.co/api/v2/location-area",
+		inputB: []byte("data"),
 	},
 }
 
 func TestCache(t *testing.T) {
 	for _, test := range tests {
-		cache := New(1 * time.Second) 
+		cache := New(1 * time.Second)
 		cache.Add(test.inputA, test.inputB)
-		val, ok := cache.Get(test.inputA); 
+		val, ok := cache.Get(test.inputA)
 		if !ok {
 			t.Errorf("%q: expected to get entry\n", test.info)
 		}

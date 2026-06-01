@@ -9,6 +9,6 @@ type Config struct {
 func New() Config {
 	return Config{
 		Prev: "",
-		Next:  "https://pokeapi.co/api/v2/location-area",
+		Next: "https://pokeapi.co/api/v2/location-area",
 	}
 }
