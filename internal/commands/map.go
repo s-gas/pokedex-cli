@@ -21,7 +21,7 @@ type Locations struct {
 	Results []Result `json:"results"`
 }
 
-func commandMap(config *config.Config, cache *cache.Cache) error {
+func commandMap(config *config.Config, cache *cache.Cache, argument string) error {
 	if config.Next == "" {
 		fmt.Println("No next locations")
 		return nil
@@ -36,7 +36,7 @@ func commandMap(config *config.Config, cache *cache.Cache) error {
 	return nil
 }
 
-func commandMapB(config *config.Config, cache *cache.Cache) error {
+func commandMapB(config *config.Config, cache *cache.Cache, argument string) error {
 	if config.Prev == "" {
 		fmt.Println("No previous locations")
 		return nil

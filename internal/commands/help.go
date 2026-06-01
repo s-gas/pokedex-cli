@@ -7,7 +7,7 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
-func commandHelp(config *config.Config, cache *cache.Cache) error {
+func commandHelp(config *config.Config, cache *cache.Cache, argument string) error {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
 	fmt.Println("")

@@ -8,7 +8,7 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
-func commandExit(config *config.Config, cache *cache.Cache) error {
+func commandExit(config *config.Config, cache *cache.Cache, argument string) error {
 	fmt.Println("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
 	return nil

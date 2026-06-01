@@ -10,7 +10,7 @@ import (
 type CliCommand struct {
 	name     string
 	info     string
-	callback func(config *config.Config, cache *cache.Cache) error
+	callback func(config *config.Config, cache *cache.Cache, argument string) error
 }
 
 var commands map[string]CliCommand
@@ -37,17 +37,26 @@ func init() {
 			info:     "Displays the previous 20 locations",
 			callback: commandMapB,
 		},
+		"explore": {
+			name:			"explore",
+			info:			"Display the Pokémon of an area",
+			callback:	commandExplore,
+		},
 	}
 }
 
 func Exec(words []string, config *config.Config, cache *cache.Cache) error {
 	if len(words) == 0 {
-		commandHelp(config, cache)
+		commandHelp(config, cache, "")
 		return nil
 	}
 	word := words[0]
 	if cmd, ok := commands[word]; ok {
-		if err := cmd.callback(config, cache); err != nil {
+		var argument string
+		if len(words) >= 2 {
+			argument = words[1]
+		}
+		if err := cmd.callback(config, cache, argument); err != nil {
 			return fmt.Errorf("Exec: %w", err)
 		}
 	} else {
