@@ -54,7 +54,6 @@ func commandMapB(config *config.Config, cache *cache.Cache) error {
 func getLocations(url string, cache *cache.Cache) (Locations, error) {
 	rawData, ok := cache.Get(url)
 	if !ok {
-		fmt.Println("not cached")
 		var err error
 		rawData, err = makeNewRequest(url)
 		if err != nil {
