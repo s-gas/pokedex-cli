@@ -7,6 +7,12 @@ import (
 )
 
 func commandExplore(config *config.Config, cache *cache.Cache, locationArea string) error {
+	if locationArea == "" {
+		fmt.Println("No location area specified")
+		return nil
+	}
+	url := config.Url.JoinPath(locationArea)
 	fmt.Println(locationArea)
+	fmt.Println(url.Path)
 	return nil
 }

@@ -14,7 +14,10 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	config := config.New()
+	config, err := config.New()
+	if err != nil {
+		fmt.Fprintf(os.Stdout, "%s\n", err)
+	}
 	cache := cache.New(1 * time.Minute)
 	for {
 		words := input.Parse(scanner)
