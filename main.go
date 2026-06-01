@@ -12,7 +12,7 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	config := config.Init()
+	config := config.New()
 	for {
 		words := input.Parse(scanner)
 		if err := commands.Exec(words, &config); err != nil {

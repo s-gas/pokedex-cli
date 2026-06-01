@@ -6,7 +6,7 @@ type Config struct {
 	Prev string
 }
 
-func Init() Config {
+func New() Config {
 	return Config{
 		Prev: "",
 		Next:  "https://pokeapi.co/api/v2/location-area",
