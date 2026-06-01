@@ -18,7 +18,7 @@ func init() {
 	commands = map[string]CliCommand{
 		"exit": {
 			name:     "exit",
-			info:     "Exit the Pokedex",
+			info:     "Exits the Pokedex",
 			callback: commandExit,
 		},
 		"help": {
@@ -31,18 +31,26 @@ func init() {
 			info:     "Displays the next 20 locations",
 			callback: commandMap,
 		},
+		"mapb": {
+			name:			"mapb",
+			info:			"Displays the previous 20 locations",
+			callback:	commandMapB,
+		},
 	}
 }
 
-func Exec(words []string, config *config.Config) {
+func Exec(words []string, config *config.Config) error {
 	if len(words) == 0 {
 		commandHelp(config)
-		return
+		return nil
 	}
 	word := words[0]
 	if cmd, ok := commands[word]; ok {
-		cmd.callback(config)
+		if err := cmd.callback(config); err != nil {
+			return fmt.Errorf("Exec: %w", err)
+		}
 	} else {
 		fmt.Println("Unknown command")
 	}
+	return nil
 }

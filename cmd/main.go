@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"os"
+	"fmt"
 
 	"github.com/s-gas/pokedex-cli/internal/commands"
 	"github.com/s-gas/pokedex-cli/internal/config"
@@ -14,6 +15,8 @@ func main() {
 	config := config.Init()
 	for {
 		words := input.Parse(scanner)
-		commands.Exec(words, &config)
+		if err := commands.Exec(words, &config); err != nil {
+			fmt.Fprintf(os.Stdout, "%s\n", err)
+		}
 	}
 }

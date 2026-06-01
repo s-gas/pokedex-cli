@@ -8,8 +8,7 @@ type Config struct {
 
 func Init() Config {
 	return Config{
-		Url:  "https://pokeapi.co/api/v2/location-area",
-		Next: "",
 		Prev: "",
+		Next:  "https://pokeapi.co/api/v2/location-area",
 	}
 }
