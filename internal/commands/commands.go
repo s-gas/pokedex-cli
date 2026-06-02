@@ -42,6 +42,11 @@ func init() {
 			info:			"Displays the Pokémon that you can encounter in an area",
 			callback:	commandExplore,
 		},
+		"catch": {
+			name:			"catch",
+			info:			"Tries to catch a Pokémon",
+			callback:	commandCatch,
+		},
 	}
 }
 
