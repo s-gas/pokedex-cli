@@ -11,15 +11,16 @@ import (
 )
 
 type Pokemon struct {
-	Name string `json:"name"`
+	Name	string	`json:"name"`
 }
 
 type Encounter struct {
-	Pokemon	Pokemon `json:"pokemon"`
+	Pokemon	Pokemon	`json:"pokemon"`
 }
 
 type Location struct {
-	Encounters []Encounter `json:"pokemon_encounters"`	
+	Name				string			`json:"name"`
+	Encounters	[]Encounter `json:"pokemon_encounters"`	
 }
 
 func commandExplore(config *config.Config, cache *cache.Cache, locationArea string) error {
@@ -40,12 +41,14 @@ func commandExplore(config *config.Config, cache *cache.Cache, locationArea stri
 	if err := json.Unmarshal(rawData, &location); err != nil {
 		return fmt.Errorf("commandExplore: %w", err)
 	}
-	printEncounters(location.Encounters)
+	printEncounters(location)
 	return nil
 }
 
-func printEncounters(encounters []Encounter) {
-	for _, encounter := range encounters {
-		fmt.Println(encounter.Pokemon.Name)
+func printEncounters(location Location) {
+	fmt.Printf("Exploring %s...\n", location.Name)
+	fmt.Println("Found Pokemon:")
+	for _, encounter := range location.Encounters {
+		fmt.Printf(" - %s\n", encounter.Pokemon.Name)
 	}
 }
