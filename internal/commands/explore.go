@@ -29,13 +29,18 @@ func commandExplore(config *config.Config, cache *cache.Cache, locationArea stri
 		return nil
 	}
 	url := config.Url.JoinPath(locationArea)
-	rawData, err := request.Do(url.String())
-	if errors.Is(err, request.NotFound) {
-		fmt.Println("Location area not found")
-		return nil
-	}
-	if err != nil {
-		return fmt.Errorf("commandExplore: %w", err)
+	rawData, ok := cache.Get(url.String())
+	if !ok {
+		var err error
+		rawData, err = request.Do(url.String())
+		if errors.Is(err, request.NotFound) {
+			fmt.Println("Location area not found")
+			return nil
+		}
+		if err != nil {
+			return fmt.Errorf("commandExplore: %w", err)
+		}
+		cache.Add(url.String(), rawData)
 	}
 	var location Location
 	if err := json.Unmarshal(rawData, &location); err != nil {

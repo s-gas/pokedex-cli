@@ -39,7 +39,7 @@ func init() {
 		},
 		"explore": {
 			name:			"explore",
-			info:			"Display the Pokémon of an area",
+			info:			"Displays the Pokémon that you can encounter in an area",
 			callback:	commandExplore,
 		},
 	}
