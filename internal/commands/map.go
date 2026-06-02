@@ -56,13 +56,13 @@ func getLocations(url string, cache *cache.Cache) (Locations, error) {
 		var err error
 		rawData, err = request.Do(url)
 		if err != nil {
-			return Locations{}, fmt.Errorf("commandMap: %w", err)
+			return Locations{}, fmt.Errorf("getLocations: %w", err)
 		}
 		cache.Add(url, rawData)
 	}
 	var locations Locations
 	if err := json.Unmarshal(rawData, &locations); err != nil {
-		return Locations{}, fmt.Errorf("commandMap: %w", err)
+		return Locations{}, fmt.Errorf("getLocations: %w", err)
 	}
 	return locations, nil
 }
