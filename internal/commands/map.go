@@ -3,10 +3,9 @@ package commands
 import (
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
 
 	"github.com/s-gas/pokedex-cli/internal/cache"
+	"github.com/s-gas/pokedex-cli/internal/request"
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
@@ -55,7 +54,7 @@ func getLocations(url string, cache *cache.Cache) (Locations, error) {
 	rawData, ok := cache.Get(url)
 	if !ok {
 		var err error
-		rawData, err = makeNewRequest(url)
+		rawData, err = request.Do(url)
 		if err != nil {
 			return Locations{}, fmt.Errorf("commandMap: %w", err)
 		}
@@ -68,18 +67,6 @@ func getLocations(url string, cache *cache.Cache) (Locations, error) {
 	return locations, nil
 }
 
-func makeNewRequest(url string) ([]byte, error) {
-	res, err := http.Get(url)
-	if err != nil {
-		return nil, fmt.Errorf("makeNewRequest: %w", err)
-	}
-	defer res.Body.Close()
-	rawData, err := io.ReadAll(res.Body)
-	if err != nil {
-		return nil, fmt.Errorf("makeNewRequest: %w", err)
-	}
-	return rawData, nil
-}
 
 func printResults(results []Result) {
 	for _, result := range results {

@@ -14,6 +14,7 @@ func commandExplore(config *config.Config, cache *cache.Cache, locationArea stri
 	url := config.Url.JoinPath(locationArea)
 	fmt.Println(locationArea)
 	fmt.Println(url.Path)
+	fmt.Println(url.String())
 	// make a request to the url with the updated path
 	return nil
 }
