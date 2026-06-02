@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"encoding/json"
+	"errors"
 
 	"github.com/s-gas/pokedex-cli/internal/cache"
 	"github.com/s-gas/pokedex-cli/internal/config"
@@ -28,6 +29,10 @@ func commandExplore(config *config.Config, cache *cache.Cache, locationArea stri
 	}
 	url := config.Url.JoinPath(locationArea)
 	rawData, err := request.Do(url.String())
+	if errors.Is(err, request.NotFound) {
+		fmt.Println("Location area not found")
+		return nil
+	}
 	if err != nil {
 		return fmt.Errorf("commandExplore: %w", err)
 	}
