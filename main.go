@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	pokedex := map[string]commands.Pokemon{}
 	scanner := bufio.NewScanner(os.Stdin)
 	config, err := config.New()
 	if err != nil {
@@ -21,7 +22,7 @@ func main() {
 	cache := cache.New(1 * time.Minute)
 	for {
 		words := input.Parse(scanner)
-		if err := commands.Exec(words, &config, cache); err != nil {
+		if err := commands.Exec(pokedex, words, &config, cache); err != nil {
 			fmt.Fprintf(os.Stdout, "%s\n", err)
 		}
 	}

@@ -10,7 +10,7 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/request"
 )
 
-func commandCatch(config *config.Config, cache *cache.Cache, argument string) error {
+func commandCatch(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error {
 	if argument == "" {
 		fmt.Println("No Pokémon specified")
 		return nil

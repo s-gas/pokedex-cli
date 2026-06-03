@@ -10,7 +10,7 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/request"
 )
 
-func commandExplore(config *config.Config, cache *cache.Cache, argument string) error {
+func commandExplore(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error {
 	if argument == "" {
 		fmt.Println("No location area specified")
 		return nil

@@ -8,11 +8,10 @@ import (
 type CliCommand struct {
 	name     string
 	info     string
-	callback func(config *config.Config, cache *cache.Cache, argument string) error
+	callback func(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error
 }
 
 // Structures to store json return from "https://pokeapi.co/api/v2/location-area/{name}"
-
 type Location struct {
 	Name				string			`json:"name"`
 	Encounters	[]Encounter `json:"pokemon_encounters"`	
@@ -27,7 +26,6 @@ type Pokemon struct {
 }
 
 // Structures to store json returned from "https://pokeapi.co/api/v2/location-area"
-
 type Locations struct {
 	Next    string   `json:"next"`
 	Prev    string   `json:"previous"`

@@ -9,7 +9,7 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
-func commandMap(config *config.Config, cache *cache.Cache, argument string) error {
+func commandMap(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error {
 	if config.Next == "" {
 		fmt.Println("No next locations")
 		return nil
@@ -24,7 +24,7 @@ func commandMap(config *config.Config, cache *cache.Cache, argument string) erro
 	return nil
 }
 
-func commandMapB(config *config.Config, cache *cache.Cache, argument string) error {
+func commandMapB(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error {
 	if config.Prev == "" {
 		fmt.Println("No previous locations")
 		return nil

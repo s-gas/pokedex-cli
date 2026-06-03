@@ -44,9 +44,9 @@ func init() {
 	}
 }
 
-func Exec(words []string, config *config.Config, cache *cache.Cache) error {
+func Exec(pokedex map[string]Pokemon, words []string, config *config.Config, cache *cache.Cache) error {
 	if len(words) == 0 {
-		commandHelp(config, cache, "")
+		commandHelp(pokedex, config, cache, "")
 		return nil
 	}
 	word := words[0]
@@ -55,7 +55,7 @@ func Exec(words []string, config *config.Config, cache *cache.Cache) error {
 		if len(words) >= 2 {
 			argument = words[1]
 		}
-		if err := cmd.callback(config, cache, argument); err != nil {
+		if err := cmd.callback(pokedex, config, cache, argument); err != nil {
 			return fmt.Errorf("Exec: %w", err)
 		}
 	} else {
