@@ -9,17 +9,6 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
-type Result struct {
-	Name string `json:"name"`
-	Url  string `json:"url"`
-}
-
-type Locations struct {
-	Next    string   `json:"next"`
-	Prev    string   `json:"previous"`
-	Results []Result `json:"results"`
-}
-
 func commandMap(config *config.Config, cache *cache.Cache, argument string) error {
 	if config.Next == "" {
 		fmt.Println("No next locations")

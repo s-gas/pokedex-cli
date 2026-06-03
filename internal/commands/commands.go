@@ -7,12 +7,6 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/config"
 )
 
-type CliCommand struct {
-	name     string
-	info     string
-	callback func(config *config.Config, cache *cache.Cache, argument string) error
-}
-
 var commands map[string]CliCommand
 
 func init() {

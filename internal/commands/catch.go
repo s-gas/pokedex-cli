@@ -28,6 +28,10 @@ func commandCatch(config *config.Config, cache *cache.Cache, argument string) er
 	if err = json.Unmarshal(rawData, &pokemon); err != nil {
 		return fmt.Errorf("commandCatch: %w", err)
 	}
-	fmt.Println(pokemon.Name)
+	catch(pokemon)
 	return nil
+}
+
+func catch(pokemon Pokemon) {
+	fmt.Printf("Throwing a Pokeball at %s\n", pokemon.Name)
 }

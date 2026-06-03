@@ -10,19 +10,6 @@ import (
 	"github.com/s-gas/pokedex-cli/internal/request"
 )
 
-type Pokemon struct {
-	Name	string	`json:"name"`
-}
-
-type Encounter struct {
-	Pokemon	Pokemon	`json:"pokemon"`
-}
-
-type Location struct {
-	Name				string			`json:"name"`
-	Encounters	[]Encounter `json:"pokemon_encounters"`	
-}
-
 func commandExplore(config *config.Config, cache *cache.Cache, argument string) error {
 	if argument == "" {
 		fmt.Println("No location area specified")
