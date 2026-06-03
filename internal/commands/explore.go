@@ -23,12 +23,12 @@ type Location struct {
 	Encounters	[]Encounter `json:"pokemon_encounters"`	
 }
 
-func commandExplore(config *config.Config, cache *cache.Cache, locationArea string) error {
-	if locationArea == "" {
+func commandExplore(config *config.Config, cache *cache.Cache, argument string) error {
+	if argument == "" {
 		fmt.Println("No location area specified")
 		return nil
 	}
-	url := config.UrlLocation.JoinPath(locationArea)
+	url := config.UrlLocation.JoinPath(argument)
 	rawData, ok := cache.Get(url.String())
 	if !ok {
 		var err error
