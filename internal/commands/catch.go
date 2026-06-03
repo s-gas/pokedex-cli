@@ -19,7 +19,8 @@ func commandCatch(pokedex map[string]Pokemon, config *config.Config, cache *cach
 	url := config.UrlPokemon.JoinPath(argument)
 	rawData, ok := cache.Get(url.String())
 	if !ok {
-		rawData, err := request.Do(url.String())
+		var err error
+		rawData, err = request.Do(url.String())
 		if errors.Is(err, request.NotFound) {
 			fmt.Println("Pokemon not found")
 			return nil

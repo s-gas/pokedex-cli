@@ -18,7 +18,8 @@ func commandExplore(pokedex map[string]Pokemon, config *config.Config, cache *ca
 	url := config.UrlLocation.JoinPath(argument)
 	rawData, ok := cache.Get(url.String())
 	if !ok {
-		rawData, err := request.Do(url.String())
+		var err error
+		rawData, err = request.Do(url.String())
 		if errors.Is(err, request.NotFound) {
 			fmt.Println("Location area not found")
 			return nil
