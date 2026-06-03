@@ -39,7 +39,7 @@ func commandCatch(pokedex map[string]Pokemon, config *config.Config, cache *cach
 }
 
 func catch(pokedex map[string]Pokemon, pokemon Pokemon) {
-	fmt.Printf("Throwing a Pokeball at %s\n", pokemon.Name)
+	fmt.Printf("Throwing a Pokeball at %s...\n", pokemon.Name)
 	if rand.Intn(400) > pokemon.Exp {
 		fmt.Printf("%s was caught!\n", pokemon.Name)
 		pokedex[pokemon.Name] = pokemon
