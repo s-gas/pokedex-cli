@@ -23,6 +23,7 @@ type Encounter struct {
 
 type Pokemon struct {
 	Name	string	`json:"name"`
+	Exp		int			`json:"base_experience"`
 }
 
 // Structures to store json returned from "https://pokeapi.co/api/v2/location-area"

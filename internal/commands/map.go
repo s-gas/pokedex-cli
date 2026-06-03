@@ -42,8 +42,7 @@ func commandMapB(pokedex map[string]Pokemon, config *config.Config, cache *cache
 func getLocations(url string, cache *cache.Cache) (Locations, error) {
 	rawData, ok := cache.Get(url)
 	if !ok {
-		var err error
-		rawData, err = request.Do(url)
+		rawData, err := request.Do(url)
 		if err != nil {
 			return Locations{}, fmt.Errorf("getLocations: %w", err)
 		}

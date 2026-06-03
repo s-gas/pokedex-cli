@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"errors"
 	"encoding/json"
+	"math/rand"
 	
 	"github.com/s-gas/pokedex-cli/internal/cache"
 	"github.com/s-gas/pokedex-cli/internal/config"
@@ -16,22 +17,32 @@ func commandCatch(pokedex map[string]Pokemon, config *config.Config, cache *cach
 		return nil
 	}
 	url := config.UrlPokemon.JoinPath(argument)
-	rawData, err := request.Do(url.String())
-	if errors.Is(err, request.NotFound) {
-		fmt.Println("Pokemon not found")
-		return nil
-	}
-	if err != nil {
-		return fmt.Errorf("commandCatch: %w", err)
+	rawData, ok := cache.Get(url.String())
+	if !ok {
+		rawData, err := request.Do(url.String())
+		if errors.Is(err, request.NotFound) {
+			fmt.Println("Pokemon not found")
+			return nil
+		}
+		if err != nil {
+			return fmt.Errorf("commandCatch: %w", err)
+		}
+		cache.Add(url.String(), rawData)
 	}
 	var pokemon Pokemon 
-	if err = json.Unmarshal(rawData, &pokemon); err != nil {
+	if err := json.Unmarshal(rawData, &pokemon); err != nil {
 		return fmt.Errorf("commandCatch: %w", err)
 	}
-	catch(pokemon)
+	catch(pokedex, pokemon)
 	return nil
 }
 
-func catch(pokemon Pokemon) {
+func catch(pokedex map[string]Pokemon, pokemon Pokemon) {
 	fmt.Printf("Throwing a Pokeball at %s\n", pokemon.Name)
+	if rand.Intn(400) > pokemon.Exp {
+		fmt.Printf("%s was caught!\n", pokemon.Name)
+		pokedex[pokemon.Name] = pokemon
+	} else {
+		fmt.Printf("%s escaped!\n", pokemon.Name)
+	}
 }
