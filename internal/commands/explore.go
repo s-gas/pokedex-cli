@@ -28,7 +28,7 @@ func commandExplore(config *config.Config, cache *cache.Cache, locationArea stri
 		fmt.Println("No location area specified")
 		return nil
 	}
-	url := config.Url.JoinPath(locationArea)
+	url := config.UrlLocation.JoinPath(locationArea)
 	rawData, ok := cache.Get(url.String())
 	if !ok {
 		var err error
