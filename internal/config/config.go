@@ -1,15 +1,15 @@
 package config
 
 import (
-	"net/url"
 	"fmt"
+	"net/url"
 )
 
 type Config struct {
-	UrlLocation	*url.URL
-	UrlPokemon	*url.URL
-	Next 				string
-	Prev 				string
+	UrlLocation *url.URL
+	UrlPokemon  *url.URL
+	Next        string
+	Prev        string
 }
 
 func New() (Config, error) {
@@ -22,9 +22,9 @@ func New() (Config, error) {
 		return Config{}, fmt.Errorf("New: %w", err)
 	}
 	return Config{
-		UrlLocation:	uLocation,
-		UrlPokemon:		uPokemon,
-		Prev: 				"",
-		Next: 				uLocation.String(),
+		UrlLocation: uLocation,
+		UrlPokemon:  uPokemon,
+		Prev:        "",
+		Next:        uLocation.String(),
 	}, nil
 }

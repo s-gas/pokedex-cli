@@ -32,14 +32,19 @@ func init() {
 			callback: commandMapB,
 		},
 		"explore": {
-			name:			"explore",
-			info:			"Displays the Pokémon that you can encounter in an area",
-			callback:	commandExplore,
+			name:     "explore",
+			info:     "Displays the Pokémon that you can encounter in an area",
+			callback: commandExplore,
 		},
 		"catch": {
-			name:			"catch",
-			info:			"Tries to catch a Pokémon",
-			callback:	commandCatch,
+			name:     "catch",
+			info:     "Tries to catch a Pokémon",
+			callback: commandCatch,
+		},
+		"inspect": {
+			name:     "inspect",
+			info:     "Displays information about a Pokémon from the Pokédex ",
+			callback: commandInspect,
 		},
 	}
 }

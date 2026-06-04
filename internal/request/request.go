@@ -1,10 +1,10 @@
 package request
 
 import (
-	"io"
-	"fmt"
-	"net/http"
 	"errors"
+	"fmt"
+	"io"
+	"net/http"
 )
 
 var NotFound = errors.New("not found")

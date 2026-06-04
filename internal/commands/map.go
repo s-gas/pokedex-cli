@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/s-gas/pokedex-cli/internal/cache"
-	"github.com/s-gas/pokedex-cli/internal/request"
 	"github.com/s-gas/pokedex-cli/internal/config"
+	"github.com/s-gas/pokedex-cli/internal/request"
 )
 
 func commandMap(pokedex map[string]Pokemon, config *config.Config, cache *cache.Cache, argument string) error {
@@ -55,7 +55,6 @@ func getLocations(url string, cache *cache.Cache) (Locations, error) {
 	}
 	return locations, nil
 }
-
 
 func printResults(results []Result) {
 	for _, result := range results {

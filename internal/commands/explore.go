@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"fmt"
 	"encoding/json"
 	"errors"
+	"fmt"
 
 	"github.com/s-gas/pokedex-cli/internal/cache"
 	"github.com/s-gas/pokedex-cli/internal/config"

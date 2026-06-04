@@ -1,11 +1,11 @@
 package commands
 
 import (
-	"fmt"
-	"errors"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"math/rand"
-	
+
 	"github.com/s-gas/pokedex-cli/internal/cache"
 	"github.com/s-gas/pokedex-cli/internal/config"
 	"github.com/s-gas/pokedex-cli/internal/request"
@@ -30,7 +30,7 @@ func commandCatch(pokedex map[string]Pokemon, config *config.Config, cache *cach
 		}
 		cache.Add(url.String(), rawData)
 	}
-	var pokemon Pokemon 
+	var pokemon Pokemon
 	if err := json.Unmarshal(rawData, &pokemon); err != nil {
 		return fmt.Errorf("commandCatch: %w", err)
 	}
