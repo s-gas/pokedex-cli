@@ -19,7 +19,7 @@ Install the binary:
 go install
 ```
 
-### How to run
+## How to run
 
 ```bash
 pokedex-cli
