@@ -11,8 +11,7 @@ var commands map[string]CliCommand
 
 func init() {
 	commands = map[string]CliCommand{
-		"exit": {
-			name:     "exit",
+		"exit": { name:     "exit",
 			info:     "Exits the Pokedex",
 			callback: commandExit,
 		},
@@ -43,8 +42,13 @@ func init() {
 		},
 		"inspect": {
 			name:     "inspect",
-			info:     "Displays information about a Pokémon from the Pokédex ",
+			info:     "Displays information about a Pokémon from the Pokédex",
 			callback: commandInspect,
+		},
+		"pokedex": {
+			name:     "pokedex",
+			info:     "Displays the Pokémon in the Pokédex",
+			callback: commandPokedex,
 		},
 	}
 }
